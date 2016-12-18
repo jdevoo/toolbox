@@ -266,7 +266,7 @@ public class ConceptDriftDetector extends Model<ConceptDriftDetector> {
         Model model =
 				new ConceptDriftDetector(data.getAttributes())
 						.setWindowSize(windowSize)
-						.setClassIndex(1)
+						.setClassIndex(3)
 						.setTransitionVariance(0.1);
 
 

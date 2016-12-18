@@ -73,7 +73,6 @@ Archive.1.zip
 *.zip
 
 *.arff
-datasets/RandomData.arff
 doc/testEvaluation/*
 huginlib/*
 maven_startup.sh
