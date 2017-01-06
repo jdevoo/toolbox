@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.amidst</groupId>
     <artifactId>AmidstToolbox</artifactId>
-    <version>0.6.0</version> <!-- AmidstVersion -->
+    <version>0.6.1</version> <!-- AmidstVersion -->
 
     <name>AmidstToolbox</name>
 
@@ -112,12 +112,12 @@
 
 
     <modules>
-        <module>module-all</module>
 
-        <module>huginlink</module>
+        <module>module-all</module>
         <module>core</module>
         <module>core-dynamic</module>
-
+        
+        <module>huginlink</module>
         <module>examples</module>
         <module>moalink</module>
         <module>latent-variable-models</module>
@@ -130,7 +130,6 @@
         <module>extensions/lda</module>
 
         <!-- Remove the following references to modules before publishing a new release -->
-        <!--module>extensions/caepia2015</module>
         
         
         
@@ -139,7 +138,8 @@
         
         
         
-        <module>extensions/uai2016</module-->
+        
+        
 
 
     </modules>
@@ -190,9 +190,11 @@
                     </archive>
                 </configuration>
             </plugin>
-                     
-            
-            
+
+
+
+
+
             <!-- maven-deploy plugin -->
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>

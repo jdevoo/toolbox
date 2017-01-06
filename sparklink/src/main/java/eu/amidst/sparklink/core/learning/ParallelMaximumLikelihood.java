@@ -18,7 +18,6 @@
 package eu.amidst.sparklink.core.learning;
 
 
-import com.google.common.util.concurrent.AtomicDouble;
 import eu.amidst.core.datastream.DataInstance;
 import eu.amidst.core.exponentialfamily.EF_BayesianNetwork;
 import eu.amidst.core.exponentialfamily.SufficientStatistics;
@@ -60,23 +59,11 @@ public class ParallelMaximumLikelihood implements ParameterLearningAlgorithm, Se
      */
     protected transient SufficientStatistics sumSS;
 
-    /** Represents the data instance count. */
-    protected AtomicDouble numInstances;
-
-    /** Represents whether Laplace correction (i.e. MAP estimation) is used*/
-    protected boolean laplace = true;
-
-
+    double numInstances;
 
     public void initLearning() {
         efBayesianNetwork = new EF_BayesianNetwork(dag);
-        if (laplace) {
-            sumSS = efBayesianNetwork.createInitSufficientStatistics();
-            numInstances = new AtomicDouble(1.0); //Initial counts
-        }else {
-            sumSS = efBayesianNetwork.createZeroSufficientStatistics();
-            numInstances = new AtomicDouble(0.0); //Initial counts
-        }
+        sumSS = efBayesianNetwork.createInitSufficientStatistics();
 
     }
 
@@ -123,13 +110,16 @@ public class ParallelMaximumLikelihood implements ParameterLearningAlgorithm, Se
 
             //this.sumSS = computeSufficientStatistics(dataUpdate, efBayesianNetwork);
 
-            sumSS.sum(dataUpdate.getDataSet()
+            this.sumSS = dataUpdate.getDataSet()
                 .mapPartitions( iter -> sufficientStatisticsMap(iter, this.efBayesianNetwork))
-                .reduce(ParallelMaximumLikelihood::sufficientStatisticsReduce));
+                .reduce(ParallelMaximumLikelihood::sufficientStatisticsReduce);
 
+        //Add the prior
+            sumSS.sum(efBayesianNetwork.createInitSufficientStatistics());
 
             // FIXME: Maybe a generic method from the class, what about caching?
-            numInstances.addAndGet(dataSpark.getDataSet().count());
+            numInstances = dataSpark.getDataSet().count();
+            numInstances++;//Initial counts
 
 
         return this.getLogMarginalProbability();
@@ -159,7 +149,7 @@ public class ParallelMaximumLikelihood implements ParameterLearningAlgorithm, Se
         //Normalize the sufficient statistics
         SufficientStatistics normalizedSS = efBayesianNetwork.createZeroSufficientStatistics();
         normalizedSS.copy(sumSS);
-        normalizedSS.divideBy(numInstances.get());
+        normalizedSS.divideBy(numInstances);
 
         efBayesianNetwork.setMomentParameters(normalizedSS);
         return efBayesianNetwork.toBayesianNetwork(dag);

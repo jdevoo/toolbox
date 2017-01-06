@@ -83,7 +83,6 @@ public class ParallelMaximumLikelihoodTest extends TestCase {
             Assert.assertTrue(bnet.getConditionalDistribution(var).equalDist(asianet.getConditionalDistribution(var), 0.05));
         }
 
-
         //Or check directly if the true and learned networks are equals
         Assert.assertTrue(bnet.equalBNs(asianet, 0.05));
     }
