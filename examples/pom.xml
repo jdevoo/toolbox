@@ -13,13 +13,13 @@
     <parent>
         <artifactId>AmidstToolbox</artifactId>
         <groupId>eu.amidst</groupId>
-        <version>0.6.2</version> <!-- AmidstVersion -->
+        <version>0.6.3</version> <!-- AmidstVersion -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.amidst</groupId>
     <artifactId>examples</artifactId>
-    <version>0.6.2</version> <!-- AmidstVersion -->
+    <version>0.6.3</version> <!-- AmidstVersion -->
 
 
 
@@ -69,7 +69,7 @@
         </developer>
         <developer>
             <name>Antonio Fernandez Alvarez</name>
-            <email>afalvarez@bcc.es</email>
+            <email>afalvarez@eu.amidst.dVMPJournalExtensionJuly2016.bcc.es</email>
             <organization>Banco Cooperativo de Credito, Spain</organization>
             <organizationUrl>https://github.com/afalvarez</organizationUrl>
         </developer>
@@ -104,29 +104,29 @@
         <dependency>
             <artifactId>core</artifactId>
             <groupId>eu.amidst</groupId>
-            <version>0.6.2</version> <!-- AmidstVersion -->
+            <version>0.6.3</version> <!-- AmidstVersion -->
         </dependency>
 
         <dependency>
             <artifactId>core-dynamic</artifactId>
             <groupId>eu.amidst</groupId>
-            <version>0.6.2</version> <!-- AmidstVersion -->
+            <version>0.6.3</version> <!-- AmidstVersion -->
         </dependency>
 
         <dependency>
             <artifactId>huginlink</artifactId>
             <groupId>eu.amidst</groupId>
-            <version>0.6.2</version> <!-- AmidstVersion -->
+            <version>0.6.3</version> <!-- AmidstVersion -->
         </dependency>
         <dependency>
             <groupId>eu.amidst</groupId>
             <artifactId>latent-variable-models</artifactId>
-            <version>0.6.2</version> <!-- AmidstVersion -->
+            <version>0.6.3</version> <!-- AmidstVersion -->
         </dependency>
         <dependency>
             <artifactId>sparklink</artifactId>
             <groupId>eu.amidst</groupId>
-            <version>0.6.2</version> <!-- AmidstVersion -->
+            <version>0.6.3</version> <!-- AmidstVersion -->
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>
@@ -172,8 +172,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                <skipTests>true</skipTests>
-            </configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
         </plugin>
     </plugins>
     
